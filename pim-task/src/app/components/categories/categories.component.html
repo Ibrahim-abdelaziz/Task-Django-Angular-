@@ -1,0 +1,66 @@
+  <div class="header">Categories</div><br>
+  <!-- Pop-up -->
+<!-- Trigger/Open The Modal -->
+  <button id="myBtn" class="btn btn-primary" (click)="addNewPost()">Add New Category </button>
+
+  <div class="formGroup">
+            <ul class="list-group"> 
+               <li class="list-group-item"  *ngFor= "let category of posts; index as i"> 
+              
+              <a [routerLink]="['/product', category.id]">
+              {{i + 1}} ) : <h4>{{category.name}} </h4> 
+              
+              </a>  
+              <input type="button" value="Edit category" class="btn btn-primary" (click)="EditPost(category, i)"> 
+              <input type="button" value="Delete category" class="btn btn-danger" (click)="RemovePost(category, i)"> 
+            
+      </li> 
+      </ul>
+</div> 
+
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+
+    <!--<input type="text" class="form-control" id="test-name">
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="addNewCategory()">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="ClosePopup()">Close</button>
+    </div>-->
+    
+    <form [formGroup]='form' (submit)="SubmitPost(form)">
+      <div class="form-group">
+        <div *ngIf="form.errors" class="alert alert.danger">
+            Form is invalid
+        </div>
+        <label for="PostName">Enter Post Name</label>
+        <input [(ngModel)]="postItem.name" type="text" class="form-control" id="PostName" formControlName="PostName">            
+          <div *ngIf="form.controls.PostName.touched && form.controls.PostName.invalid" class="alert alert-danger">
+              <div *ngIf='form.controls.PostName.errors.required'>
+                Post Name is Required
+              </div>
+          </div>         
+      </div>          
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+</div>
+<!--<table>
+    <ul *ngFor= "let post of posts; index as i">
+    <tr>  
+        <td>ID :</td>
+        <td>Name : </td>
+    </tr>
+    <tr>
+        <a [routerLink]="['/product', i]">
+        <td>{{post.id}}</td>
+        <td>{{post.name}}</td>
+      </a>
+    </tr>
+  </ul>
+</table>-->

@@ -1,0 +1,140 @@
+<div class="header">
+  <h1>Products</h1>
+</div>
+<br/>
+ <!-- Pop-up -->
+<!-- Trigger/Open The Modal -->
+<button id="myBtn" class="btn btn-primary" (click)="addNewPost()">Add New product  </button> 
+<br/>
+
+<div class="formGroup">
+  <ul class="list-group">
+    <li class="list-group-item"  *ngFor= "let product of Products; index as i">
+    
+        {{i + 1}}) 
+         <h4>{{product.name}} </h4> 
+          {{product.price}} 
+          {{product.quantity}} 
+       
+      <input type="button" value="Edit product" class="btn btn-primary" (click)="EditPost(product, i)">
+      <input type="button" value="Delete product" class="btn btn-danger" (click)="RemovePost(product, i)">
+   
+    </li>    
+  </ul>
+</div><br>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+
+    <!--<input type="text" class="form-control" id="test-name">
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="addNewCategory()">Save</button>
+      <button type="button" class="btn btn-secondary" (click)="ClosePopup()">Close</button>
+    </div>-->
+    
+    <form [formGroup]='form' (submit)="SubmitPost(form)">
+      <div class="form-group">
+        <div *ngIf="form.errors" class="alert alert.danger">
+            Form is invalid
+        </div>
+        <label for="ProductName">Enter Product Name</label>
+        <input [(ngModel)]="proItem.name" type="text" class="form-control" id="ProductName" formControlName="ProductName">            
+          <div *ngIf="form.controls.ProductName.touched && form.controls.ProductName.invalid" class="alert alert-danger">
+              <div *ngIf='form.controls.ProductName.errors.required'>
+                Product Name is Required
+              </div>
+          </div>  
+          <br>
+          <label for="ProductCode">Enter Product Code</label>
+        <input [(ngModel)]="proItem.product_Code" type="text" class="form-control" id="ProductCode" formControlName="ProductCode">            
+          <div *ngIf="form.controls.ProductCode.touched && form.controls.ProductCode.invalid" class="alert alert-danger">
+              <div *ngIf='form.controls.ProductCode.errors.required'>
+                Product Code is Required
+              </div>
+          </div> 
+          <br/>
+          <label for="ProductPrice">Enter Product Price</label>
+          <input [(ngModel)]="proItem.price" type="text" class="form-control" id="ProductPrice" formControlName="ProductPrice">            
+            <div *ngIf="form.controls.ProductPrice.touched && form.controls.ProductPrice.invalid" class="alert alert-danger">
+                <div *ngIf='form.controls.ProductPrice.errors.required'>
+                  Product Price is Required
+                </div>
+            </div>
+            <br/>
+            <label for="ProductQuantity">Enter Product Quntity</label>
+          <input [(ngModel)]="proItem.quantity" type="text" class="form-control" id="ProductQuantity" formControlName="ProductQuantity">            
+            <div *ngIf="form.controls.ProductQuantity.touched && form.controls.ProductQuantity.invalid" class="alert alert-danger">
+                <div *ngIf='form.controls.ProductQuantity.errors.required'>
+                  Product Quntity is Required
+                </div>
+            </div>
+            <br/>
+            <label for="ProductCategories">Enter Product Category</label>
+            <input [(ngModel)]="proItem.categories" type="text" class="form-control" id="ProductCategories" formControlName="ProductCategories">            
+              <div *ngIf="form.controls.ProductQuantity.touched && form.controls.ProductCategories.invalid" class="alert alert-danger">
+                  <div *ngIf='form.controls.ProductCategories.errors.required'>
+                    Product Category is Required
+                  </div>
+              </div>         
+      </div>          
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+       <!-- <label for="ProductCode">Enter Product Code</label>
+        <input [(ngModel)]="proItem.product_Code" type="text" class="form-control" id="ProductCode" formControlName="ProductCode">            
+          <div *ngIf="form.controls.ProductCode.touched && form.controls.ProductCode.invalid" class="alert alert-danger">
+              <div *ngIf='form.controls.ProductCode.errors.required'>
+                Product Code is Required
+              </div>
+          </div>
+        </div>
+          <br/>
+          <label for="ProductPrice">Enter Product price</label>
+          <input [(ngModel)]="proItem.price" type="text" class="form-control" id="ProductPrice" formControlName="ProductPrice">            
+            <div *ngIf="form.controls.ProductPrice.touched && form.controls.ProductPrice.invalid" class="alert alert-danger">
+                <div *ngIf='form.controls.ProductPrice.errors.required'>
+                  Product Price is Required
+                </div>
+            </div>
+          </div>
+            <br/>
+            <label for="ProductQuantity">Enter Product Quntity </label>
+            <input [(ngModel)]="proItem.quantity" type="text" class="form-control" id="ProductQuantity" formControlName="ProductQuantity">            
+              <div *ngIf="form.controls.ProductQuantity.touched && form.controls.ProductQuantity.invalid" class="alert alert-danger">
+                  <div *ngIf='form.controls.ProductQuantity.errors.required'>
+                    Product Quntity is Required
+                  </div>
+              </div>
+              </div>  
+              <br/>
+              <label for="ProductOfCategories">Enter Product Quntity </label>
+            <input [(ngModel)]="proItem.categories" type="text" class="form-control" id="ProductOfCategories" formControlName="ProductOfCategories">            
+              <div *ngIf="form.controls.ProductOfCategories.touched && form.controls.ProductOfCategories.invalid" class="alert alert-danger">
+                  <div *ngIf='form.controls.ProductOfCategories.errors.required'>
+                    Product Of Categories is Required
+                  </div>
+              </div>         
+      </div>          
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form> -->
+
+  </div>
+</div>
+
+<!--<table>
+    <ul *ngFor= "let post of posts; index as i">
+    <tr>  
+        <td>ID :</td>
+        <td>Name : </td>
+    </tr>
+    <tr>
+        <a [routerLink]="['/product', i]">
+        <td>{{post.id}}</td>
+        <td>{{post.name}}</td>
+      </a>
+    </tr>
+  </ul>
+</table>-->
